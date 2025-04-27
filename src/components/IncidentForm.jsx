@@ -83,11 +83,11 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
   const getSeverityOptionStyle = (value) => {
     switch(value) {
       case 'Low':
-        return 'text-blue-800 bg-blue-50';
+        return 'text-emerald-800 bg-emerald-50';
       case 'Medium':
-        return 'text-yellow-800 bg-yellow-50';
+        return 'text-amber-800 bg-amber-50';
       case 'High':
-        return 'text-red-800 bg-red-50';
+        return 'text-rose-800 bg-rose-50';
       default:
         return '';
     }
@@ -102,18 +102,18 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
 
   return (
       <div className="fixed inset-0 flex justify-center items-center z-50" onClick={handleBackdropClick}>
-        <div className="fixed inset-0 flex justify-center items-center z-40" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}></div>
-        <div className="bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden w-full max-w-md z-10 relative" onClick={e => e.stopPropagation()}>
-          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
-            <div>
+        <div className="fixed inset-0" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}></div>
+        <div className="bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden w-full max-w-md z-10 relative animate-fadeIn" onClick={e => e.stopPropagation()}>
+          <div className="bg-gradient-to-r bg-[#65558F] py-4 flex justify-between items-center">
+            <div className={"m-4"}>
               <h2 className="text-xl font-semibold text-white">Report New Incident</h2>
-              <p className="text-indigo-100 text-sm mt-1">
+              <p className="text-teal-50 text-sm mt-1">
                 Submit details about a new AI safety incident
               </p>
             </div>
             <button
                 onClick={onClose}
-                className="text-white hover:text-indigo-200 focus:outline-none"
+                className="text-white hover:text-teal-200 focus:outline-none"
                 aria-label="Close form"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -122,10 +122,10 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          <form onSubmit={handleSubmit} className="p-6 space-y-5 bg-gray-50">
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                Incident Title <span className="text-red-500">*</span>
+                Incident Title <span className="text-rose-500">*</span>
               </label>
               <input
                   type="text"
@@ -134,17 +134,17 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
                   value={formData.title}
                   onChange={handleChange}
                   placeholder="Brief title describing the incident"
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                      errors.title ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 ${
+                      errors.title ? 'border-rose-300 bg-rose-50' : 'border-gray-300'
                   }`}
                   disabled={isSubmitting}
               />
-              {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
+              {errors.title && <p className="mt-1 text-sm text-rose-600">{errors.title}</p>}
             </div>
 
             <div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                Description <span className="text-red-500">*</span>
+                Description <span className="text-rose-500">*</span>
               </label>
               <textarea
                   id="description"
@@ -153,25 +153,25 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
                   onChange={handleChange}
                   placeholder="Detailed description of what happened and any relevant context"
                   rows={4}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                      errors.description ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 ${
+                      errors.description ? 'border-rose-300 bg-rose-50' : 'border-gray-300'
                   }`}
                   disabled={isSubmitting}
               />
-              {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
+              {errors.description && <p className="mt-1 text-sm text-rose-600">{errors.description}</p>}
             </div>
 
             <div>
               <label htmlFor="severity" className="block text-sm font-medium text-gray-700 mb-1">
-                Severity Level <span className="text-red-500">*</span>
+                Severity Level <span className="text-rose-500">*</span>
               </label>
               <select
                   id="severity"
                   name="severity"
                   value={formData.severity}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 ${
-                      errors.severity ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 ${
+                      errors.severity ? 'border-rose-300 bg-rose-50' : 'border-gray-300'
                   }`}
                   disabled={isSubmitting}
               >
@@ -179,12 +179,12 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
                 <option value="Medium" className={getSeverityOptionStyle('Medium')}>Medium - Significant issue requiring attention</option>
                 <option value="High" className={getSeverityOptionStyle('High')}>High - Critical issue requiring immediate action</option>
               </select>
-              {errors.severity && <p className="mt-1 text-sm text-red-600">{errors.severity}</p>}
+              {errors.severity && <p className="mt-1 text-sm text-rose-600">{errors.severity}</p>}
             </div>
 
             <div className="pt-3 flex items-center justify-between">
               <p className="text-xs text-gray-500">
-                <span className="text-red-500">*</span> Required fields
+                <span className="text-rose-500">*</span> Required fields
               </p>
               <div className="flex space-x-2">
                 <button
@@ -197,7 +197,7 @@ const IncidentForm = ({ onAddIncident, onClose }) => {
                 </button>
                 <button
                     type="submit"
-                    className={`px-5 py-2 bg-indigo-600 text-white font-medium rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors ${
+                    className={`px-5 py-2 bg-[#65558F] text-white font-medium rounded-md shadow hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors ${
                         isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
                     }`}
                     disabled={isSubmitting}
